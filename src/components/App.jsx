@@ -7,7 +7,7 @@ import axios from "axios";
 
 function App() {
   const [notes, setNotes] = useState([]);
-  const URL = process.env.URL;
+  const BACKEND_URL = process.env.BACKEND_URL;
 
   function addNote(newNote) {
     setNotes(prevNotes => {
@@ -16,7 +16,7 @@ function App() {
   }
 
   useEffect(() => {
-    axios.get(URL)
+    axios.get(BACKEND_URL)
     .then (res => {
       setNotes(res.data);
     })
@@ -27,7 +27,7 @@ function App() {
 
   function deleteNote(id) {
 
-    axios.delete(URL + `${id}`);
+    axios.delete(BACKEND_URL + `${id}`);
     setNotes(prevNotes => {
       return prevNotes.filter((noteItem, index) => {
         return index !== id;

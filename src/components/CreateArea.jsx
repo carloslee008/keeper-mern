@@ -6,7 +6,7 @@ import axios from "axios";
 
 function CreateArea(props) {
 
-  const URL = process.env.URL;
+  const BACKEND_URL = process.env.BACKEND_URL;
   const [isExpanded, setExpanded] = useState(false);
 
   const [note, setNote] = useState({
@@ -29,7 +29,7 @@ function CreateArea(props) {
 
     props.onAdd(note);
     axios.post(
-      URL,
+      BACKEND_URL,
       note
     );
     window.location = "/";
