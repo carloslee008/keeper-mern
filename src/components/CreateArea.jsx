@@ -5,6 +5,8 @@ import Zoom from "@mui/material/Zoom";
 import axios from "axios";
 
 function CreateArea(props) {
+
+  const URL = process.env.URL;
   const [isExpanded, setExpanded] = useState(false);
 
   const [note, setNote] = useState({
@@ -27,7 +29,7 @@ function CreateArea(props) {
 
     props.onAdd(note);
     axios.post(
-      'http://localhost:5000/notes/',
+      URL,
       note
     );
     window.location = "/";
