@@ -4,14 +4,19 @@ import Fab from "@mui/material/Fab";
 import Zoom from "@mui/material/Zoom";
 import axios from "axios";
 
-function CreateArea(props) {
+const client = axios.create({
+  baseURL: "https://keeper-mern-gh3q.onrender.com/notes"
+})
 
-  const [isExpanded, setExpanded] = useState(false);
+function CreateArea(props) {
 
   const [note, setNote] = useState({
     title: "",
     content: ""
-  });
+  })
+
+  const [isExpanded, setExpanded] = useState(false);
+
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -27,11 +32,7 @@ function CreateArea(props) {
   function submitNote(event) {
 
     props.onAdd(note);
-    axios.post(
-      "https://keeper-mern-gh3q.onrender.com/notes/",
-      note
-    );
-    window.location = "/";
+    client.post("", note);
     setNote({
       title: "",
       content: ""

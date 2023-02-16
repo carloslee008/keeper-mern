@@ -5,6 +5,10 @@ import Note from "./Note";
 import CreateArea from "./CreateArea";
 import axios from "axios";
 
+const client = axios.create({
+  baseURL: "https://keeper-mern-gh3q.onrender.com/notes"
+})
+
 function App() {
   const [notes, setNotes] = useState([]);
 
@@ -15,25 +19,20 @@ function App() {
   }
 
   useEffect(() => {
-    axios.get("https://keeper-mern-gh3q.onrender.com/notes/")
-    .then (res => {
-      setNotes(res.data);
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  });
+    fetch(`https://keeper-mern-gh3q.onrender.com/notes/`)
+    .then((res) => res.json())
+    .then((data) => setNotes(data))
+  })
 
   function deleteNote(id) {
 
-    axios.delete(`https://keeper-mern-gh3q.onrender.com/notes/${id}`);
+    client.delete(`/${id}`);
     setNotes(prevNotes => {
       return prevNotes.filter((noteItem, index) => {
         return index !== id;
       });
     });
-
-  }
+   }
 
   return (
     <div>
