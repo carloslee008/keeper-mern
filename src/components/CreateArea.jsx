@@ -6,7 +6,6 @@ import axios from "axios";
 
 function CreateArea(props) {
 
-  const BACKEND_URL = process.env.BACKEND_URL;
   const [isExpanded, setExpanded] = useState(false);
 
   const [note, setNote] = useState({
@@ -29,7 +28,7 @@ function CreateArea(props) {
 
     props.onAdd(note);
     axios.post(
-      BACKEND_URL,
+      "https://keeper-mern-gh3q.onrender.com/notes/",
       note
     );
     window.location = "/";

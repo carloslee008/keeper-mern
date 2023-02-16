@@ -7,7 +7,6 @@ import axios from "axios";
 
 function App() {
   const [notes, setNotes] = useState([]);
-  const BACKEND_URL = process.env.BACKEND_URL;
 
   function addNote(newNote) {
     setNotes(prevNotes => {
@@ -16,7 +15,7 @@ function App() {
   }
 
   useEffect(() => {
-    axios.get(BACKEND_URL)
+    axios.get("https://keeper-mern-gh3q.onrender.com/notes/")
     .then (res => {
       setNotes(res.data);
     })
@@ -27,7 +26,7 @@ function App() {
 
   function deleteNote(id) {
 
-    axios.delete(BACKEND_URL + `${id}`);
+    axios.delete(`https://keeper-mern-gh3q.onrender.com/notes/${id}`);
     setNotes(prevNotes => {
       return prevNotes.filter((noteItem, index) => {
         return index !== id;
